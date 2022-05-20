@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+service MatrixOperation {
+  rpc Addition (Matrices_in) returns (Matrix_out) {}
+  rpc Multiplication (Matrices_in) returns (Matrix_out) {}
+}
+
+message Matrices_in  {
+  Matrix Matrix_1 = 1;
+  Matrix Matrix_2 = 2;
+}
+
+message Matrix_out {
+  Matrix Matrix_3 = 1;
+}
+
+//defining the structure of as list of datapoints with row variable
+//inpsired by https://stackoverflow.com/questions/6825196/protocol-buffers-store-an-double-array-1d-2d-and-3d
+message Matrix {
+  int32 rows = 1;
+  repeated double values = 2 [packed = true];
+}
